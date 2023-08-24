@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
-import {Keyboard} from 'react-native';
-import { TouchableOpacity } from "react-native-gesture-handler";
-import styles from "./DropdownItem.styles";
-import {theme} from "../../constants/Theme";
+import PropTypes from 'prop-types'
+import React, { PureComponent } from 'react'
+import { Keyboard } from 'react-native'
+import { Button } from 'react-native-material-buttons'
+import styles from './DropdownItem.styles'
+import { theme } from '../../constants/Theme'
 
 export default class DropdownItem extends PureComponent {
   static defaultProps = {
@@ -11,7 +11,7 @@ export default class DropdownItem extends PureComponent {
     disabledColor: theme.transparent,
     rippleContainerBorderRadius: 0,
     shadeBorderRadius: 0,
-  };
+  }
 
   static propTypes = {
     color: PropTypes.string,
@@ -19,34 +19,30 @@ export default class DropdownItem extends PureComponent {
     rippleContainerBorderRadius: PropTypes.number,
     shadeBorderRadius: PropTypes.number,
     index: PropTypes.number.isRequired,
-  };
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.onPress = this.onPress.bind(this);
+    this.onPress = this.onPress.bind(this)
   }
 
   onPress() {
-    const {onPress, index} = this.props;
+    const { onPress, index } = this.props
 
-    if (typeof onPress === "function") {
-      onPress(index);
-      Keyboard.dismiss();
+    if (typeof onPress === 'function') {
+      onPress(index)
+      Keyboard.dismiss()
     }
   }
 
   render() {
-    const {children, style, ...props} = this.props;
+    const { children, style, ...props } = this.props
 
     return (
-      <TouchableOpacity
-        {...props}
-        style={[styles.container, style]}
-        onPress={this.onPress}
-      >
+      <Button {...props} style={[styles.container, style]} onPress={this.onPress}>
         {children}
-      </TouchableOpacity>
-    );
+      </Button>
+    )
   }
 }
